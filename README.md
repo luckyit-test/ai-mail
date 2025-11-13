@@ -108,16 +108,61 @@ git push -u origin main
 
 ```
 ai-mail/
-├── .env.example          # Пример файла с переменными окружения
-├── .gitignore           # Игнорируемые файлы для Git
-├── main.py              # Главный файл приложения
-├── requirements.txt     # Зависимости Python
-├── README.md           # Документация проекта
-├── DEPLOYMENT.md       # Подробная инструкция по развертыванию
-├── setup_git.ps1       # Скрипт для настройки Git
-└── release.ps1         # Скрипт для автоматического релиза в GitHub
+├── .env.example              # Пример файла с переменными окружения
+├── .gitignore               # Игнорируемые файлы для Git
+├── main.py                  # Главный файл приложения
+├── vpn_monitor.py           # VPN Monitor Service
+├── requirements.txt         # Зависимости Python
+├── README.md               # Документация проекта
+├── DEPLOYMENT.md           # Подробная инструкция по развертыванию
+├── VPN_MONITOR_README.md   # Документация VPN Monitor
+├── setup_git.ps1           # Скрипт для настройки Git
+├── release.ps1             # Скрипт для автоматического релиза в GitHub
+├── install_vpn_service.ps1 # Скрипт установки VPN Monitor как Windows Service
+└── start_vpn_monitor.bat   # Скрипт для быстрого запуска VPN Monitor
 
 ```
+
+## VPN Monitor Service
+
+Сервис для мониторинга подключения Cisco VPN AnyConnect и отправки уведомлений в Telegram.
+
+### Быстрый старт
+
+1. Установите зависимости:
+```bash
+pip install -r requirements.txt
+```
+
+2. Создайте `.env` файл на основе `env.example`:
+```bash
+copy env.example .env
+```
+
+3. Настройте Telegram бота:
+   - Создайте бота через [@BotFather](https://t.me/botfather)
+   - Получите Chat ID через [@userinfobot](https://t.me/userinfobot)
+   - Укажите `TELEGRAM_BOT_TOKEN` и `TELEGRAM_CHAT_ID` в `.env`
+
+4. Запустите монитор:
+```bash
+python vpn_monitor.py
+```
+
+Или используйте скрипт:
+```bash
+start_vpn_monitor.bat
+```
+
+### Установка как Windows Service
+
+1. Запустите PowerShell от имени администратора
+2. Выполните:
+```powershell
+.\install_vpn_service.ps1
+```
+
+Подробная документация: [VPN_MONITOR_README.md](VPN_MONITOR_README.md)
 
 ## Быстрый старт
 
